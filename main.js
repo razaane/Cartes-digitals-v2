@@ -1,0 +1,382 @@
+if (window.location.pathname.includes("/index.html")){
+    document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById("slider");
+  const slides = [...slider.children];
+
+  
+  slides.forEach(slide => {
+    const clone = slide.cloneNode(true);
+    slider.appendChild(clone);
+  });
+
+  let pos = 0;
+  let speed = 0.8; 
+  let slideSetWidth = 0;
+
+  const updateWidth = () => {
+    slideSetWidth = slides.reduce((acc, slide) => acc + slide.offsetWidth + 24, 0);
+  };
+
+  updateWidth();
+  window.addEventListener("resize", updateWidth);
+
+  function animate() {
+    pos -= speed;
+    if (Math.abs(pos) >= slideSetWidth) pos = 0; 
+    slider.style.transform = `translateX(${pos}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+});
+}
+if (window.location.pathname.includes("/MarketPage.html")){
+    document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+});
+
+// Cards data with rarity
+const cards = [
+  { id: 1, name: "Sentinelle Cybernétique", description: "Une défenseuse avec le feux de tech.", img: "./images/card11.png", price: 25.50, rarity: "rare" },
+  { id: 2, name: "Void Witch", description: "Une créature de pure énergie.", img: "./images/card2.png", price: 25.50, rarity: "legendary" },
+  { id: 3, name: "Spectre de Néon", description: "Une entitée insaisissable qui hante le réseau.", img: "./images/card3.png", price: 25.50, rarity: "commun" },
+  { id: 4, name: "Chimère des Étoiles", description: "Une fusion de bêtes imprévisible.", img: "./images/card4.png", price: 25.50, rarity: "rare" },
+  { id: 5, name: "Phénix Binaire", description: "Renaissant de ses cendres numériques.", img: "./images/card5.png", price: 25.50, rarity: "legendary" },
+  { id: 6, name: "Golem de Quantum", description: "Un colosse instable, capable de manipuler la réalité.", img: "./images/card6.png", price: 25.50, rarity: "commun" }
+];
+
+const container = document.getElementById("cardsContainer");
+const cardsPerPage = 4;
+let currentPage = 1;
+const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function renderCards(page) {
+  container.innerHTML = "";
+  const start = (page - 1) * cardsPerPage;
+  const end = start + cardsPerPage;
+  const pageCards = cards.slice(start, end);
+
+  pageCards.forEach(c => {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("flex", "flex-col", "items-center", "text-center");
+
+    cardDiv.innerHTML = `
+      <img src="${c.img}" alt="${c.name}" class="w-full max-w-[250px] mx-auto">
+      <div class="grid grid-rows-4 bg-cards font-tet p-2 text-white text-left h-80 border-l-2 border-r-2 border-b-2 border-[#7B2CBF] w-full max-w-[250px]">
+        <h3 class="text-[25px] text-center">${c.name}</h3>
+        <div class="flex flex-col gap-[20px] h-[60px] text-center">
+          <p class="w-[100%] font-display">${c.description}</p>
+          <span>1/100 - ${c.rarity}</span>
+        </div>
+        <p class="flex items-end pb-[10px] justify-center">${c.price} €</p>
+        <div class="flex justify-between h-[50px]">
+          <button class="bg-btn hover:bg-purple-500 px-2 py-1 rounded-lg font-tet add-cart-btn">Ajouter au panier</button>
+          <button class="rounded-lg bg-btn2 px-4 hover:bg-gray-400 transition fav-btn">❤️</button>
+        </div>
+      </div>
+    `;
+
+    // Favorite button
+    const favBtn = cardDiv.querySelector(".fav-btn");
+    favBtn.addEventListener("click", () => {
+      if (!favorites.some(f => f.id === c.id)) {
+        favorites.push(c);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert(`${c.name} ajouté aux favoris !`);
+      } else {
+        alert(`${c.name} est déjà dans vos favoris.`);
+      }
+    });
+
+    // Cart button
+    const cartBtn = cardDiv.querySelector(".add-cart-btn");
+    cartBtn.addEventListener("click", () => {
+      const existing = cart.find(item => item.id === c.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...c, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${c.name} ajouté au panier !`);
+    });
+
+    container.appendChild(cardDiv);
+  });
+
+  updatePagination();
+}
+
+// Pagination logic
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const pageNumbers = document.getElementById("pageNumbers");
+
+function updatePagination() {
+  pageNumbers.innerHTML = "";
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.classList.add("px-3", "py-1", "rounded");
+    if (i === currentPage) btn.classList.add("bg-btn", "font-bold");
+    else btn.classList.add("bg-btn2");
+
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderCards(currentPage);
+    });
+    pageNumbers.appendChild(btn);
+  }
+
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+}
+
+prevBtn.addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderCards(currentPage);
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderCards(currentPage);
+  }
+});
+
+// Initial render
+renderCards(currentPage);
+
+}
+if (window.location.pathname.includes("/GuidePage.html")){
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+        btn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      });
+}
+if (window.location.pathname.includes("/CollectionPage.html")){
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("menu-btn");
+      const menu = document.getElementById("menu");
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    });
+    const collectionContainer = document.getElementById("collectionContainer");
+let collection = JSON.parse(localStorage.getItem("collection")) || [];
+
+const filterBtns = document.querySelectorAll(".filter-btn");
+let currentFilter = "all";
+
+function renderCollection(filter = "all") {
+    collectionContainer.innerHTML = "";
+
+    let filtered = collection;
+    if(filter !== "all") {
+        filtered = collection.filter(c => c.rarity === filter);
+    }
+
+    if (filtered.length === 0) {
+        collectionContainer.innerHTML = `<p class="col-span-full text-center text-white text-lg">Aucune carte trouvée pour ce filtre.</p>`;
+        return;
+    }
+
+    filtered.forEach(c => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add(
+            "text-center",
+            "bg-cards",
+            "p-4",
+            "rounded-lg",
+            "flex",
+            "flex-col",
+            "items-center"
+        );
+
+        cardDiv.innerHTML = `
+            <img src="${c.img}" alt="${c.name}" class="w-full max-w-[200px] h-48 object-cover mb-2">
+            <h3 class="text-lg font-display font-bold mb-1">${c.name}</h3>
+            <p class="mb-1 font-tet">${c.description || ''}</p>
+            <p class="mb-1 font-tet">${c.price} €</p>
+            <p class="mb-2 font-tet font-bold" style="color: ${getRarityColor(c.rarity)};">${capitalizeRarity(c.rarity)}</p>
+        `;
+
+        collectionContainer.appendChild(cardDiv);
+    });
+}
+
+function getRarityColor(rarity) {
+    switch(rarity) {
+        case "commun": return "#3B82F6";
+        case "rare": return "#A855F7";
+        case "legendary": return "#F59E0B";
+        default: return "#FFFFFF";
+    }
+}
+
+function capitalizeRarity(rarity) {
+    if(!rarity) return "";
+    return rarity.charAt(0).toUpperCase() + rarity.slice(1);
+}
+
+filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+    
+        filterBtns.forEach(b => b.classList.replace("bg-btn", "bg-btn2"));
+        
+        btn.classList.replace("bg-btn2", "bg-btn");
+
+        currentFilter = btn.dataset.filter;
+        renderCollection(currentFilter);
+    });
+});
+
+renderCollection(currentFilter);
+
+}
+if (window.location.pathname.includes("/FavoritesPage.html")){
+    document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.getElementById("menu-btn");
+            const menu = document.getElementById("menu");
+            btn.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
+            });
+        });
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+const container = document.getElementById("favoritesContainer");
+
+function renderFavorites() {
+    container.innerHTML = "";
+
+    if (favorites.length === 0) {
+        container.innerHTML = `<p class="col-span-full text-center text-white text-lg">Vous n'avez aucun favori.</p>`;
+        return;
+    }
+
+    favorites.forEach(card => {
+        const div = document.createElement("div");
+        div.classList.add("text-center", "bg-cards", "p-4", "rounded-lg", "flex", "flex-col", "items-center");
+
+        div.innerHTML = `
+            <img src="${card.img}" alt="${card.name}" class="w-full max-w-[200px] h-48 object-cover mb-2">
+            <h3 class="text-lg font-display font-bold mb-1">${card.name}</h3>
+            <p class="mb-2 font-tet">${card.price} €</p>
+            <button class="delete-btn bg-red-600 hover:bg-red-500 px-3 py-1 rounded" data-id="${card.id}">
+                Supprimer
+            </button>
+        `;
+
+        container.appendChild(div);
+    });
+
+    container.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.dataset.id);
+            favorites = favorites.filter(c => c.id !== id);
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+            renderFavorites();
+        });
+    });
+}
+
+renderFavorites();
+
+}
+if (window.location.pathname.includes("/PanierPage.html")){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let collection = JSON.parse(localStorage.getItem("collection")) || [];
+
+const container = document.getElementById("cartContainer");
+const totalDiv = document.getElementById("cartTotal");
+
+document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("menu-btn");
+      const menu = document.getElementById("menu");
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    });
+
+function renderCart() {
+    container.innerHTML = "";
+    if (cart.length === 0) {
+        container.innerHTML = `<p class="col-span-full text-center text-white text-lg">Votre panier est vide.</p>`;
+        totalDiv.textContent = "";
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(item => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("text-center", "bg-cards", "p-4", "rounded-lg", "flex", "flex-col", "items-center");
+
+        cardDiv.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" class="w-full max-w-[200px] mx-auto mb-2">
+            <h3 class="text-lg font-bold mb-1">${item.name}</h3>
+            <p class="mb-2">Prix: ${item.price} €</p>
+            <p class="mb-2">Quantité: ${item.quantity}</p>
+            <div class="flex flex-col sm:flex-row justify-center sm:justify-between gap-2 w-full mt-2">
+                <button class="delete-btn bg-red-600 hover:bg-red-500 px-3 py-1 rounded" data-id="${item.id}">Supprimer</button>
+                <button class="buy-btn bg-green-600 hover:bg-green-500 px-3 py-1 rounded" data-id="${item.id}">Acheter</button>
+            </div>
+        `;
+
+        total += item.price * item.quantity;
+        container.appendChild(cardDiv);
+    });
+
+    totalDiv.textContent = `Total: ${total.toFixed(2)} €`;
+
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.dataset.id);
+            removeFromCart(id);
+        });
+    });
+
+    document.querySelectorAll(".buy-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.dataset.id);
+            buyItem(id);
+        });
+    });
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+function buyItem(id) {
+    const index = cart.findIndex(item => item.id === id);
+    if (index === -1) return;
+
+    const item = cart[index];
+    collection.push(item);
+    localStorage.setItem("collection", JSON.stringify(collection));
+
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(`✅ Vous avez acheté ${item.name} !`);
+
+    renderCart();
+}
+
+renderCart();
+
+}

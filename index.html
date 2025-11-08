@@ -205,41 +205,7 @@
       <button class="bg-btn hover:bg-purple-400 h-10 w-full md:w-20 rounded-lg">Send</button>
     </div>
   </footer>
-
   
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.getElementById("slider");
-  const slides = [...slider.children];
-
-  
-  slides.forEach(slide => {
-    const clone = slide.cloneNode(true);
-    slider.appendChild(clone);
-  });
-
-  let pos = 0;
-  let speed = 0.8; 
-  let slideSetWidth = 0;
-
-  const updateWidth = () => {
-    slideSetWidth = slides.reduce((acc, slide) => acc + slide.offsetWidth + 24, 0);
-  };
-
-  updateWidth();
-  window.addEventListener("resize", updateWidth);
-
-  function animate() {
-    pos -= speed;
-    if (Math.abs(pos) >= slideSetWidth) pos = 0; 
-    slider.style.transform = `translateX(${pos}px)`;
-    requestAnimationFrame(animate);
-  }
-
-  requestAnimationFrame(animate);
-});
-</script>
-
-
+  <script src="main.js"></script>
 </body>
 </html>
