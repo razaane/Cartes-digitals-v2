@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigitalRami</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              backroung: "#32194A",
+              cards: "#1A0B2E",
+              text: "#FFFFFF",
+              btn: "#7B2CBF",
+              btn2: "#4D4F50",
+              tete: "#90B2CB",
+              commun: "#1E293B",
+              rare: "#1E3A8A",
+              legendary: "#78350F",
+              epic: "#581C87",
+              "commun-logo": "#CBD5E1",
+              "rare-logo": "#60A5FA",
+              "legendary-logo": "#FBBF24",
+              "epic-logo": "#C084FC",
+            },
+            fontFamily: {
+              display: ["Orbitron"],
+              tet: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      input[type="checkbox"]:checked ~ .question .plus {
+        display: none;
+      }
+      input[type="checkbox"]:checked ~ .question .minus {
+        display: inline;
+      }
+      input[type="checkbox"]:checked ~ .answer {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body class="bg-backroung text-white font-[display]">
+    
+    <header
+      class="flex items-center justify-between bg-cards h-20 px-6 sticky top-0 z-50"
+    >
+      
+      <div class="text-xl font-bold font-display tracking-normal">
+        <a href="index.html">DIGITALRAMI</a>
+      </div>
+
+      
+      <button id="menu-btn" class="text-white text-2xl md:hidden">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      
+      <nav
+        id="menu"
+        class="hidden absolute top-20 left-0 w-full bg-cards md:flex md:static md:w-auto md:gap-8 md:items-center"
+      >
+        <ul
+          class="flex flex-col md:flex-row md:gap-8 text-center md:text-left font-display"
+        >
+          <li>
+            <a href="MarketPage.html" class="block px-4 py-2 hover:text-gray-400"
+              >Market</a
+            >
+          </li>
+          <li>
+            <a href="GuidePage.html" class="block px-4 py-2 hover:text-gray-400"
+              >Guide</a
+            >
+          </li>
+          <li>
+            <a
+              href="CollectionPage.html"
+              class="block px-4 py-2 hover:text-gray-400"
+              >Collection</a
+            >
+          </li>
+          <li>
+            <a href="PanierPage.html" class="block px-4 py-2 hover:text-gray-400"
+              >Panier</a
+            >
+          </li>
+          <li>
+            <a
+              href="FavoritesPage.html"
+              class="block px-4 py-2 hover:text-gray-400"
+              >Favorites</a
+            >
+          </li>
+        </ul>
+
+        
+        <div class="flex flex-col md:flex-row gap-4 md:ml-8 p-4 md:p-0">
+          <button
+            class="bg-btn hover:bg-purple-400 px-3 py-2 rounded-lg font-display"
+          >
+            Sign Up
+          </button>
+          <button
+            class="bg-btn2 hover:bg-gray-500 px-3 py-2 rounded-lg font-display"
+          >
+            Login
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    
+    <section class="relative text-center mt-10">
+      <img src="images/GD.png" class="w-full object-cover" />
+      <div
+        class="absolute inset-0 flex flex-col items-center justify-center text-white mt-10"
+      >
+        <h1 class="text-4xl font-bold font-display">How TO Play</h1>
+        <p class="font-tet text-tete mt-2">
+          Master the rules and dominate the game.<br />Learn everything you need
+          to start your journey.
+        </p>
+        <button
+          class="bg-btn font-display px-6 py-3 rounded-lg hover:bg-purple-400 mt-6"
+        >
+          Play Now
+        </button>
+      </div>
+    </section>
+
+    
+    <section class="mt-20 text-center">
+      <h1 class="font-display font-bold text-2xl">Core Game Concepts</h1>
+
+      <div class="flex flex-col md:flex-row gap-4 justify-center mt-8 px-4">
+        <!-- Card 1 -->
+        <div class="bg-cards w-full md:w-[30vw] h-[30vh] p-6 rounded-lg">
+          <i class="fa-solid fa-medal text-btn text-2xl mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Turn Structure</h6>
+          <p class="font-tet text-tete">
+            Learn the step-by-step sequence of actions you can take on your
+            turn.
+          </p>
+        </div>
+
+        
+        <div class="bg-cards w-full md:w-[30vw] h-[30vh] p-6 rounded-lg">
+          <i class="fa-solid fa-bolt text-btn text-2xl mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Main System</h6>
+          <p class="font-tet text-tete">
+            Master the resources required to play your most powerful cards.
+          </p>
+        </div>
+
+        
+        <div class="bg-cards w-full md:w-[30vw] h-[30vh] p-6 rounded-lg">
+          <i class="fa-solid fa-spinner text-btn text-2xl mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Game Objective</h6>
+          <p class="font-tet text-tete">
+            Understand the primary goal to achieve victory against your
+            opponents.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="mt-20 text-center">
+      <h1 class="font-display font-bold text-2xl">Cards Rarity Levels</h1>
+
+      <div
+        class="flex flex-col md:flex-row gap-6 justify-center items-center mt-10 px-4"
+      >
+        
+        <div class="bg-commun w-full md:w-[20vw] h-[40vh] rounded-xl p-6">
+          <i class="fa-regular fa-bookmark text-3xl text-commun-logo mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Common</h6>
+          <p class="font-tet text-tete">
+            Core cards for your collection, forming the backbone of any deck.
+          </p>
+        </div>
+
+        
+        <div class="bg-rare w-full md:w-[20vw] h-[40vh] rounded-lg p-6">
+          <i class="fa-solid fa-shield-halved text-3xl text-rare-logo mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Rare</h6>
+          <p class="font-tet text-tete">
+            Powerful cards with unique abilities that can turn the tide of
+            battle.
+          </p>
+        </div>
+
+        
+        <div class="bg-epic w-full md:w-[20vw] h-[40vh] rounded-lg p-6">
+          <i class="fa-solid fa-crown text-3xl text-epic-logo mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Epic</h6>
+          <p class="font-tet text-tete">
+            Game-changing cards with complex mechanics for strategic plays.
+          </p>
+        </div>
+
+        
+        <div class="bg-legendary w-full md:w-[20vw] h-[40vh] rounded-lg p-6">
+          <i class="fa-regular fa-gem text-3xl text-legendary-logo mb-4"></i>
+          <h6 class="font-bold font-display mb-2">Legendary</h6>
+          <p class="font-tet text-tete">
+            The most coveted cards, possessing unparalleled power and influence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="mt-20">
+      <h1 class="text-2xl text-center font-display font-bold">
+        Frequently Asked Questions
+      </h1>
+
+      <div class="flex flex-col items-center mt-8">
+        
+        <div class="faq-item w-[90vw] md:w-[50vw] bg-cards mb-4 rounded-lg">
+          <input type="checkbox" id="toggle1" class="hidden" />
+          <label
+            for="toggle1"
+            class="flex font-bold font-display justify-between items-center p-4 cursor-pointer"
+          >
+            <span>How do I get new cards?</span>
+            <span class="plus text-xl font-bold">+</span>
+            <span class="minus text-xl font-bold hidden">-</span>
+          </label>
+          <div class="answer bg-cards p-4 font-tet mb-6 rounded hidden">
+            New cards can be acquired through card packs earned by playing,
+            completing quests, or buying from the market.
+          </div>
+        </div>
+
+        <div class="faq-item w-[90vw] md:w-[50vw] bg-cards mb-4 rounded-lg">
+          <input type="checkbox" id="toggle2" class="hidden" />
+          <label
+            for="toggle2"
+            class="flex justify-between items-center font-bold font-display p-4 cursor-pointer"
+          >
+            <span>How rare are Legendary cards?</span>
+            <span class="plus text-xl font-bold">+</span>
+            <span class="minus text-xl font-bold hidden">-</span>
+          </label>
+          <div class="answer bg-cards p-4 font-tet mb-6 rounded hidden">
+            Legendary cards are extremely rare and can only be found in
+            high-level packs or special events.
+          </div>
+        </div>
+
+        <div class="faq-item w-[90vw] md:w-[50vw] bg-cards mb-4 rounded-lg">
+          <input type="checkbox" id="toggle3" class="hidden" />
+          <label
+            for="toggle3"
+            class="flex justify-between items-center font-bold font-display p-4 cursor-pointer"
+          >
+            <span>Can I trade cards with other players?</span>
+            <span class="plus text-xl font-bold">+</span>
+            <span class="minus text-xl font-bold hidden">-</span>
+          </label>
+          <div class="answer bg-cards p-4  font-tet mb-6 rounded hidden">
+            Yes, players can safely trade cards through the official trading
+            system inside the game.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <footer
+      class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-[140px] bg-cards p-6 mt-20"
+    >
+      <div class="flex flex-wrap gap-6 text-xs font-display">
+        <p>Terms of service</p>
+        <p>Privacy policy</p>
+        <p>About us</p>
+      </div>
+
+      <div class="flex justify-center items-center gap-4 text-2xl">
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-solid fa-envelope"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <input
+          type="text"
+          placeholder="Contact Us"
+          class="rounded-lg text-black px-2 py-1"
+        />
+        <button
+          class="bg-btn hover:bg-purple-400 h-10 w-20 rounded-lg font-display"
+        >
+          Send
+        </button>
+      </div>
+    </footer>
+
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+        btn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
