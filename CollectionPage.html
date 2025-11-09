@@ -24,8 +24,9 @@
             text: "#FFFFFF",
             btn: "#7B2CBF",
             btn2: "#4D4F50",
-            commun: "#3B82F6",
-            rare: "#A855F7",
+            commun: "#999999",
+            rare: "#3B82F6",
+            epic:"#A855F7",
             legendary: "#F59E0B"
           },
           fontFamily: {
@@ -67,10 +68,11 @@
   <main class="px-4 md:px-20 mt-8">
     <h1 class="text-center text-4xl font-bold font-display mb-8">Ma Collection</h1>
     <div class="flex justify-center gap-4 mb-6 flex-wrap">
-      <button class="filter-btn bg-btn hover:bg-purple-500 px-4 py-2 rounded-lg" data-filter="all">Tous</button>
-      <button class="filter-btn bg-btn2 hover:bg-gray-500 px-4 py-2 rounded-lg" data-filter="commun">Commun</button>
-      <button class="filter-btn bg-btn2 hover:bg-gray-500 px-4 py-2 rounded-lg" data-filter="rare">Rare</button>
-      <button class="filter-btn bg-btn2 hover:bg-gray-500 px-4 py-2 rounded-lg" data-filter="legendary">Légendaire</button>
+      <button class="filter-btn bg-cards hover:bg-purple-500 font-tet px-4 py-2 rounded-lg" data-filter="all">Tous</button>
+      <button class="filter-btn bg-commun hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="commun">Commun</button>
+      <button class="filter-btn bg-rare hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="rare">Rare</button>
+      <button class="filter-btn bg-epic hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="epic">Epic</button>
+      <button class="filter-btn bg-legendary hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="legendary">Légendaire</button>
     </div>
 
     <section id="collectionContainer"
