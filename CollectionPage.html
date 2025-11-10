@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DigitalRami - Collection</title>
 
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -26,7 +27,7 @@
             btn2: "#4D4F50",
             commun: "#999999",
             rare: "#3B82F6",
-            epic:"#A855F7",
+            epic: "#A855F7",
             legendary: "#F59E0B"
           },
           fontFamily: {
@@ -53,6 +54,9 @@
       class="hidden absolute top-20 left-0 w-full bg-cards md:flex md:static md:w-auto md:gap-8 md:items-center">
       <ul class="flex flex-col md:flex-row md:gap-8 text-center md:text-left font-display">
         <li><a href="MarketPage.html" class="block px-4 py-2 hover:text-gray-400">Market</a></li>
+        <li>
+          <a href="PlayPage.html" class="block px-4 py-2 hover:text-gray-400">Play</a>
+        </li>
         <li><a href="GuidePage.html" class="block px-4 py-2 hover:text-gray-400">Guide</a></li>
         <li><a href="CollectionPage.html" class="block px-4 py-2 hover:text-gray-400">Collection</a></li>
         <li><a href="PanierPage.html" class="block px-4 py-2 hover:text-gray-400">Panier</a></li>
@@ -68,20 +72,25 @@
   <main class="px-4 md:px-20 mt-8">
     <h1 class="text-center text-4xl font-bold font-display mb-8">Ma Collection</h1>
     <div class="flex justify-center gap-4 mb-6 flex-wrap">
-      <button class="filter-btn bg-cards hover:bg-purple-500 font-tet px-4 py-2 rounded-lg" data-filter="all">Tous</button>
-      <button class="filter-btn bg-commun hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="commun">Commun</button>
-      <button class="filter-btn bg-rare hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="rare">Rare</button>
-      <button class="filter-btn bg-epic hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="epic">Epic</button>
-      <button class="filter-btn bg-legendary hover:bg-gray-500 font-tet px-4 py-2 rounded-lg" data-filter="legendary">Légendaire</button>
+      <button class="filter-btn bg-cards hover:bg-purple-500 font-tet px-4 py-2 rounded-lg"
+        data-filter="all">Tous</button>
+      <button class="filter-btn bg-commun hover:bg-gray-500 font-tet px-4 py-2 rounded-lg"
+        data-filter="commun">Commun</button>
+      <button class="filter-btn bg-rare hover:bg-gray-500 font-tet px-4 py-2 rounded-lg"
+        data-filter="rare">Rare</button>
+      <button class="filter-btn bg-epic hover:bg-gray-500 font-tet px-4 py-2 rounded-lg"
+        data-filter="epic">Epic</button>
+      <button class="filter-btn bg-legendary hover:bg-gray-500 font-tet px-4 py-2 rounded-lg"
+        data-filter="legendary">Légendaire</button>
     </div>
 
     <section id="collectionContainer"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
-      
+
     </section>
   </main>
 
-  
+
   <footer class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-[140px] bg-cards p-6 mt-20">
     <div class="flex flex-wrap gap-6 text-xs font-display">
       <p>Terms of service</p>
@@ -103,4 +112,5 @@
   </footer>
   <script src="main.js"></script>
 </body>
+
 </html>

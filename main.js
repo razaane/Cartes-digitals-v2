@@ -13,6 +13,15 @@ const cards = [
     { id: 12, name: "Tinin Shadow", description: "Un autre tinin mystique capable de se fondre dans l’ombre.", img: "./images/12.png", price: 14.00, rarity: "rare" }
 
 ];
+function getRarityColor(rarity) {
+        switch (rarity) {
+            case "commun": return "#999999";
+            case "rare": return "#3B82F6";
+            case "legendary": return "#F59E0B";
+            case "epic": return "#A855F7";
+            default: return "#FFFFFF";
+        }
+    }
 if (window.location.pathname.includes("/index.html")) {
     document.addEventListener("DOMContentLoaded", () => {
         const btn = document.getElementById("menu-btn");
@@ -234,15 +243,7 @@ if (window.location.pathname.includes("/CollectionPage.html")) {
         });
     }
 
-    function getRarityColor(rarity) {
-        switch (rarity) {
-            case "commun": return "#999999";
-            case "rare": return "#3B82F6";
-            case "legendary": return "#F59E0B";
-            case "epic": return "#A855F7";
-            default: return "#FFFFFF";
-        }
-    }
+    
     filterBtns.forEach(btn => {
         btn.addEventListener("click", () => {
 
@@ -392,5 +393,24 @@ if (window.location.pathname.includes("/PanierPage.html")) {
 
     renderCart();
 
+}
+if (window.location.pathname.includes("/PlayPage.html")) {
+    let afficherMydeck = JSON.parse(localStorage.getItem("collection")) || [];
+    const mydeck = document.getElementById('mydeck');
+    function Cardsgame() {
+        mydeck.innerHTML = "";
+        for (let i = 0; i < afficherMydeck.length; i++) {
+            mydeck.innerHTML += `
+            <div class="w-[50%] text-center border-2 border-[#7B2CBF] rounded-[20px] h-[px]">
+                <img src="${afficherMydeck[i].img}" alt="${afficherMydeck[i].name}" class="w-full max-w-[200px] h-48 object-cover rounded-[20px]">
+                <h3 class="text-lg font-tet font-bold mb-1">${afficherMydeck[i].name}</h3>
+                <p class="font-tet font-bold" style="color: ${getRarityColor(afficherMydeck[i].rarity)};">${afficherMydeck[i].rarity}</p>
+            </div>
+        `;
+        }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        Cardsgame();
+    });
 }
 

@@ -6,17 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DigitalRami - Market</title>
 
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+
   <script id="tailwind-config">
     tailwind.config = {
       theme: {
@@ -40,29 +42,32 @@
 </head>
 
 <body class="bg-backroung text-white font-[display]">
- 
+
   <header class="flex items-center justify-between bg-cards h-20 px-6 sticky top-0 z-50">
     <div class="text-xl font-bold font-display tracking-normal">
       <a href="index.html">DIGITALRAMI</a>
     </div>
 
-    
+
     <button id="menu-btn" class="text-white text-2xl md:hidden">
       <i class="fa-solid fa-bars"></i>
     </button>
 
-    
+
     <nav id="menu"
       class="hidden absolute top-20 left-0 w-full bg-cards md:flex md:static md:w-auto md:gap-8 md:items-center">
       <ul class="flex flex-col md:flex-row md:gap-8 text-center md:text-left font-display">
         <li><a href="MarketPage.html" class="block px-4 py-2 hover:text-gray-400">Market</a></li>
+        <li>
+          <a href="PlayPage.html" class="block px-4 py-2 hover:text-gray-400">Play</a>
+        </li>
         <li><a href="GuidePage.html" class="block px-4 py-2 hover:text-gray-400">Guide</a></li>
         <li><a href="CollectionPage.html" class="block px-4 py-2 hover:text-gray-400">Collection</a></li>
         <li><a href="PanierPage.html" class="block px-4 py-2 hover:text-gray-400">Panier</a></li>
         <li><a href="FavoritesPage.html" class="block px-4 py-2 hover:text-gray-400">Favorites</a></li>
       </ul>
 
-      
+
       <div class="flex flex-col md:flex-row gap-4 md:ml-8 p-4 md:p-0">
         <button class="bg-btn hover:bg-purple-400 px-3 py-2 rounded-lg font-display">Sign Up</button>
         <button class="bg-btn2 hover:bg-gray-500 px-3 py-2 rounded-lg font-display">Login</button>
@@ -70,22 +75,22 @@
     </nav>
   </header>
 
-  
+
   <main class="px-4 md:px-20 mt-8">
     <h1 class="text-center text-4xl font-bold font-display">Le Marché</h1>
     <p class="text-center mt-4 text-sm font-display">Découvrez et collectionnez des cartes uniques</p>
 
-    
+
     <section class="mt-8">
       <div class="max-w-[1200px] mx-auto">
         <div id="cardsContainer"
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-          
+
         </div>
       </div>
     </section>
 
-    
+
     <div id="pagination" class="flex justify-center gap-4 mt-8">
       <button id="prevBtn" class="text-white text-2xl">&lt;</button>
       <div id="pageNumbers" class="flex gap-3 text-white font-semibold"></div>
@@ -93,7 +98,7 @@
     </div>
   </main>
 
-  
+
   <footer class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-[140px] bg-cards p-6 mt-20">
     <div class="flex flex-wrap gap-6 text-xs font-display">
       <p>Terms of service</p>
@@ -113,7 +118,7 @@
       <button class="bg-btn hover:bg-purple-400 h-10 w-20 rounded-lg font-display">Send</button>
     </div>
   </footer>
- <script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>
