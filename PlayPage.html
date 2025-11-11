@@ -58,10 +58,12 @@
         input[type="checkbox"]:checked~.answer {
             display: block;
         }
-        #mydeck::-webkit-scrollbar{
+
+        #mydeck::-webkit-scrollbar {
             display: none;
         }
-        .adversaire{
+
+        .adversaire {
             width: 100%;
         }
     </style>
@@ -115,18 +117,19 @@
             </div>
         </nav>
     </header>
-    <main class="containerGame  grid grid-cols-[20%_80%] w-[97vW] gap-3">
+    <main class="containerGame  grid grid-cols-[20%_80%] w-[97vW] gap-3 h-[120vh]">
 
-        <section class="CollectionPlace rounded-lg bg-cards border-2 border-[#7B2CBF] w-[100%]">
-            <div id="mydeck" class="flex flex-col  gap-6 justify-center items-center my-[30px] h-[100vh] overflow-y-scroll">
-               
+        <section class="CollectionPlace rounded-lg bg-cards border-2 border-[#7B2CBF] w-[100%] ">
+            <div id="mydeck"
+                class="flex flex-col gap-6 items-center h-[110vh] mt-[5vh] overflow-scroll">
+
             </div>
         </section>
-        <section class=" section2 bg-cards border-[#7B2CBF] gap-2 rounded-lg flex w-[100%] ">
-            <div class="Arena border border-[#7B2CBF] flex flex-col justify-center gap-2 w-[100%] items-center">
+        <section class=" section2 bg-cards border-[#7B2CBF] border-2 gap-2 grid  rounded-lg flex w-[100%] ">
+            <div class="Arena border border-[#7B2CBF] flex flex-col justify-center gap-2 w-[100%] items-center ">
                 <div class="adversaire mt-2 border-[#7B2CBF] gap-6 w-[95%] flex-1 flex justify-center">
-                    <div class="border border-dashed border-violet-400 h-[200px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[200px] rounded-lg flex-1"></div>
+                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
+                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
                     <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
                     <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
                     <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
@@ -138,13 +141,13 @@
                     <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
                     <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
                 </div>
-                <div class="flex ">
-                    <h3 class=" font-display font-bold ">Total</h3>
-                    <button class="bg-btn rounded-lg font-display font-bold  ">
+                <div class="infoBar flex items-center justify-around px-2 w-[92%] h-[10%] border-2 rounded-[15px] border-[#7B2CBF] ">
+                    <h2 class="font-display font-bold text-white">Votre Main { 2 / 5 }</h2>
+                    <button class="bg-btn px-4 py-2 rounded-lg font-display font-bold">
                         End Turn
                     </button>
                 </div>
-                <div class="main mb-2 gap-6 w-[100%] flex justify-center">
+                <div class="main mb-2 gap-6 w-[100%] flex justify-center mb-[8px]">
                     <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
                     <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
                     <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
@@ -153,6 +156,18 @@
                 </div>
             </div>
         </section>
+        <section>
+
+        </section>
+    </main>
+    <footer class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-[140px] bg-cards p-6 ">
+        <div class="flex flex-wrap gap-6 text-xs font-display">
+            <p>Terms of service</p>
+            <p>Privacy policy</p>
+            <p>About us</p>
+        </div>
+
+        <div class="flex justify-center items-center gap-4 text-2xl">
             <i class="fa-brands fa-github"></i>
             <i class="fa-solid fa-envelope"></i>
             <i class="fa-brands fa-instagram"></i>
@@ -161,9 +176,7 @@
 
         <div class="flex items-center gap-3">
             <input type="text" placeholder="Contact Us" class="rounded-lg text-black px-2 py-1" />
-            <button class="bg-btn hover:bg-purple-400 h-10 w-20 rounded-lg font-display">
-                Send
-            </button>
+            <button class="bg-btn hover:bg-purple-400 h-10 w-20 rounded-lg font-display">Send</button>
         </div>
     </footer>
     <script src="main.js"></script>

@@ -401,7 +401,7 @@ if (window.location.pathname.includes("/PlayPage.html")) {
         mydeck.innerHTML = "";
         for (let i = 0; i < afficherMydeck.length; i++) {
             mydeck.innerHTML += `
-            <div class="w-[50%] text-center border-2 border-[#7B2CBF] rounded-[20px] h-[px]">
+            <div class="w-[50%] text-center border-2 border-[#7B2CBF] rounded-[20px] h-[90px]">
                 <img src="${afficherMydeck[i].img}" alt="${afficherMydeck[i].name}" class="w-full max-w-[200px] h-48 object-cover rounded-[20px]">
                 <h3 class="text-lg font-tet font-bold mb-1">${afficherMydeck[i].name}</h3>
                 <p class="font-tet font-bold" style="color: ${getRarityColor(afficherMydeck[i].rarity)};">${afficherMydeck[i].rarity}</p>
