@@ -1,5 +1,5 @@
 const cards = [
-    { id: 1, name: "Sentinelle Cybernétique", description: "Une défenseuse avec le feux de tech.", img: "./images/card11.png", price: 21.50, rarity: "rare" },
+    { id: 1, name: "Sentinelle Cybernétique", description: "Une défenseuse avec le feux de tech.", img: "./images/1.png", price: 21.50, rarity: "rare" },
     { id: 2, name: "Void Witch", description: "Une créature de pure énergie.", img: "./images/card2.png", price: 25.50, rarity: "legendary" },
     { id: 3, name: "Spectre de Néon", description: "Une entitée insaisissable qui hante le réseau.", img: "./images/card3.png", price: 40.50, rarity: "commun" },
     { id: 4, name: "Chimère des Étoiles", description: "Une fusion de bêtes imprévisible.", img: "./images/card4.png", price: 50.00, rarity: "epic" },
