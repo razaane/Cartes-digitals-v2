@@ -9,19 +9,18 @@ const cards = [
     { id: 8, name: "Iron Mecha-X", description: "Un robot homme conçu pour écraser tout sur son passage.", img: "./images/8.png", price: 22.00, rarity: "rare" },
     { id: 9, name: "Tinin Spark", description: "Une petite créature rapide, pleine d'énergie instable.", img: "./images/9.png", price: 12.00, rarity: "common" },
     { id: 10, name: "Abyssal Beast", description: "Un monstre venu des profondeurs, dévorant tout.", img: "./images/10.png", price: 30.00, rarity: "legendary" },
-    { id: 11, name: "Omega Droid", description: "Robot homme d’élite, programmé pour la perfection.", img: "./images/11.png", price: 27.50, rarity: "epic" },
-    { id: 12, name: "Tinin Shadow", description: "Un autre tinin mystique capable de se fondre dans l’ombre.", img: "./images/12.png", price: 14.00, rarity: "rare" }
-
+    { id: 11, name: "Omega Droid", description: "Robot homme d'élite, programmé pour la perfection.", img: "./images/11.png", price: 27.50, rarity: "epic" },
+    { id: 12, name: "Tinin Shadow", description: "Un autre tinin mystique capable de se fondre dans l'ombre.", img: "./images/12.png", price: 14.00, rarity: "rare" }
 ];
 function getRarityColor(rarity) {
-        switch (rarity) {
-            case "commun": return "#999999";
-            case "rare": return "#3B82F6";
-            case "legendary": return "#F59E0B";
-            case "epic": return "#A855F7";
-            default: return "#FFFFFF";
-        }
+    switch (rarity) {
+        case "commun": return "#999999";
+        case "rare": return "#3B82F6";
+        case "legendary": return "#F59E0B";
+        case "epic": return "#A855F7";
+        default: return "#FFFFFF";
     }
+}
 if (window.location.pathname.includes("/index.html")) {
     document.addEventListener("DOMContentLoaded", () => {
         const btn = document.getElementById("menu-btn");
@@ -45,7 +44,6 @@ if (window.location.pathname.includes("/index.html")) {
             slideSetWidth = slides.reduce((acc, slide) => acc + slide.offsetWidth + 24, 0);
 
         };
-
 
         updateWidth();
         console.log(slideSetWidth);
@@ -71,8 +69,6 @@ if (window.location.pathname.includes("/MarketPage.html")) {
             menu.classList.toggle("hidden");
         });
     });
-
-
 
     const container = document.getElementById("cardsContainer");
     const cardsPerPage = 4;
@@ -108,7 +104,6 @@ if (window.location.pathname.includes("/MarketPage.html")) {
                 </div>
                 `;
 
-            // Favorite button
             const favBtn = cardDiv.querySelector(".fav-btn");
             favBtn.addEventListener("click", () => {
                 if (!favorites.some(f => f.id === c.id)) {
@@ -120,7 +115,6 @@ if (window.location.pathname.includes("/MarketPage.html")) {
                 }
             });
 
-            // Cart button
             const cartBtn = cardDiv.querySelector(".add-cart-btn");
             cartBtn.addEventListener("click", () => {
                 const existing = cart.find(item => item.id === c.id);
@@ -139,7 +133,6 @@ if (window.location.pathname.includes("/MarketPage.html")) {
         updatePagination();
     }
 
-    // Pagination logic
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const pageNumbers = document.getElementById("pageNumbers");
@@ -178,7 +171,6 @@ if (window.location.pathname.includes("/MarketPage.html")) {
         }
     });
 
-    // Initial render
     renderCards(currentPage);
 
 }
@@ -235,6 +227,7 @@ if (window.location.pathname.includes("/CollectionPage.html")) {
             <img src="${c.img}" alt="${c.name}" class="w-full max-w-[200px] h-48 object-cover mb-2">
             <h3 class="text-lg font-tet font-bold mb-1">${c.name}</h3>
             <p class="mb-1 font-tet">${c.description || ''}</p>
+            <p class="mb-2 font-tet">Quantité: ${c.quantity}</p>    
             <p class="mb-1 font-tet">${c.price} €</p>
             <p class="mb-2 font-tet font-bold" style="color: ${getRarityColor(c.rarity)};">${c.rarity}</p>
         `;
@@ -243,7 +236,6 @@ if (window.location.pathname.includes("/CollectionPage.html")) {
         });
     }
 
-    
     filterBtns.forEach(btn => {
         btn.addEventListener("click", () => {
 
@@ -304,7 +296,6 @@ if (window.location.pathname.includes("/FavoritesPage.html")) {
             });
         });
     }
-
     renderFavorites();
 
 }
@@ -377,10 +368,17 @@ if (window.location.pathname.includes("/PanierPage.html")) {
 
     function buyItem(id) {
         const index = cart.findIndex(item => item.id === id);
-        // if (index === -1) return;
 
         const item = cart[index];
-        collection.push(item);
+
+        const existingItem = collection.find(el => el.id === item.id);
+
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + (item.quantity || 1);
+        } else {
+            collection.push(item);
+        }
+
         localStorage.setItem("collection", JSON.stringify(collection));
 
         cart.splice(index, 1);
@@ -396,21 +394,120 @@ if (window.location.pathname.includes("/PanierPage.html")) {
 }
 if (window.location.pathname.includes("/PlayPage.html")) {
     let afficherMydeck = JSON.parse(localStorage.getItem("collection")) || [];
-    const mydeck = document.getElementById('mydeck');
-    function Cardsgame() {
-        mydeck.innerHTML = "";
-        for (let i = 0; i < afficherMydeck.length; i++) {
-            mydeck.innerHTML += `
-            <div class="w-[50%] text-center border-2 border-[#7B2CBF] rounded-[20px] h-[90px]">
-                <img src="${afficherMydeck[i].img}" alt="${afficherMydeck[i].name}" class="w-full max-w-[200px] h-48 object-cover rounded-[20px]">
-                <h3 class="text-lg font-tet font-bold mb-1">${afficherMydeck[i].name}</h3>
-                <p class="font-tet font-bold" style="color: ${getRarityColor(afficherMydeck[i].rarity)};">${afficherMydeck[i].rarity}</p>
-            </div>
-        `;
-        }
-    }
+    let turn = "jouer";
     document.addEventListener("DOMContentLoaded", () => {
         Cardsgame();
     });
+    const mydeck = document.getElementById('mydeck');
+    let laMain = document.getElementById("main");
+    let cardMain;
+    function Cardsgame() {
+        mydeck.innerHTML = '';
+        afficherMydeck.forEach(card => {
+            let element = document.createElement('div');
+            element.classList.add('flex', 'justify-center');
+            element.innerHTML += `
+                 <div class="w-[60%] border-2 border-[#7B2CBF] rounded-[20px] ">
+                <img src="${card.img}" alt="${card.name}" class="rounded-[20px]">
+                <div class="bg-cards rounded[20px] text-center ">
+                    <h3 class="text-lg font-tet font-bold mb-1">${card.name}</h3>
+                    <p class="font-tet font-bold" style="color: ${getRarityColor(card.rarity)};">${card.rarity}</p>
+                </div>
+                </div>
+            `;
+            mydeck.appendChild(element);
+            element.addEventListener("click", () => {
+                if (turn === "jouer") {
+                    let laMainLength = laMain.children.length;
+                    if (laMainLength < 5) {
+                        card.quantity -= 1;
+                        laMain.innerHTML += `
+                        <div class="cardMain flex flex-col  w-[150px] h-[150px] border-2 border-[#7B2CBF] rounded-[20px] ">
+                            <img src="${card.img}" alt="${card.name}" class="rounded-[20px] h-[100px]">
+                            <div class="bg-cards rounded[20px] text-center ">
+                                <h3 class="text-[14px] font-tet font-bold mb-1">${card.name}</h3>
+                                <p class="font-tet font-bold" style="color: ${getRarityColor(card.rarity)};">${card.rarity}</p>
+                            </div>
+                        </div>
+                    `;
+                        cardMain = document.querySelectorAll(".cardMain");
+                        cardMain.forEach(card => {
+                            card.addEventListener("dragstart", () => {
+                                card.classList.add("draggable");
+                            })
+                            card.addEventListener("dragend", () => {
+                                card.classList.remove("draggable");
+                            })
+                        })
+                        if (card.quantity < 1) {
+                            afficherMydeck = afficherMydeck.filter(f => f.id != card.id);
+                            Cardsgame();
+                        }
+                    } else {
+                        alert("You can only have five cards !!");
+                    }
+                }
+            })
+        })
+    }
+
+
+    const popup = document.querySelector('.choix');
+    const attack = document.querySelector('.attack');
+    const defense = document.querySelector('.defense');
+
+    function dragevent(e) {
+        if (turn === 'jouer') {
+            const draggingelmt = document.querySelector('.draggable');
+            const target = e.currentTarget;
+            let targetlength = target.children.length;
+            if (targetlength > 0) {
+                return
+            }
+            popup.classList.remove("hidden");
+            attack.onclick = () => {
+                turn = "adverse";
+                e.preventDefault();
+                target.appendChild(draggingelmt);
+                popup.classList.add("hidden");
+                target.classList.remove('border');
+            }
+            defense.onclick = () => {
+                turn = "adverse";
+                e.preventDefault();
+                target.appendChild(draggingelmt);
+                popup.classList.add("hidden");
+                target.classList.remove('border');
+                target.classList.add('rotate-90');
+            }
+        }
+    }
+
+    const endturn = document.querySelector('.endturn');
+    const adversaire = document.querySelectorAll('.adversaire');
+    let cpt = 0;
+    endturn.addEventListener('click', () => {
+            if (turn === "adverse") {
+                turn = 'jouer';
+            let def_ata = Math.floor(Math.random() * 2);
+            const temp = adversaire[cpt];
+            temp.innerHTML = `
+                <div class="cardMain flex flex-col w-[150px] h-[150px] border-2 border-[#7B2CBF] rounded-[20px] ">
+                    <img src="${afficherMydeck[cpt].img}" alt="${afficherMydeck[cpt].name}" class="rounded-[20px] h-[100px]">
+                    <div class="bg-cards rounded[20px] text-center ">
+                        <h3 class="text-[14px] font-tet font-bold mb-1">${afficherMydeck[cpt].name}</h3>
+                        <p class="font-tet font-bold" style="color: ${getRarityColor(afficherMydeck[cpt].rarity)};">${afficherMydeck[cpt].rarity}</p>
+                    </div>
+                </div>
+        `;
+            temp.classList.remove('border')
+            if (def_ata === 0) {
+                temp.classList.add('rotate-90');
+            }
+            cpt++;
+        }
+    });
 }
+
+
 

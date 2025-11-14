@@ -119,45 +119,52 @@
     </header>
     <main class="containerGame  grid grid-cols-[20%_80%] w-[97vW] gap-3 h-[120vh]">
 
-        <section class="CollectionPlace rounded-lg bg-cards border-2 border-[#7B2CBF] w-[100%] ">
-            <div id="mydeck"
-                class="flex flex-col gap-6 items-center h-[110vh] mt-[5vh] overflow-scroll">
-
+        <section class=" rounded-lg bg-cards border-2  border-[#7B2CBF] w-[100%] ">
+            <div id="mydeck" class="flex flex-col gap-6  h-[110vh] overflow-scroll">
             </div>
         </section>
         <section class=" section2 bg-cards border-[#7B2CBF] border-2 gap-2 grid  rounded-lg flex w-[100%] ">
             <div class="Arena border border-[#7B2CBF] flex flex-col justify-center gap-2 w-[100%] items-center ">
-                <div class="adversaire mt-2 border-[#7B2CBF] gap-6 w-[95%] flex-1 flex justify-center">
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
+                <div class="mt-2 border-[#7B2CBF] gap-6 w-[95%] flex-1 flex justify-center">
+                    <div class="adversaire border border-dashed border-violet-400 flex justify-center items-center rounded-lg flex-1"></div>
+                    <div class="adversaire border border-dashed border-violet-400 flex justify-center items-center rounded-lg flex-1"></div>
+                    <div class="adversaire border border-dashed border-violet-400 flex justify-center items-center rounded-lg flex-1"></div>
+                    <div class="adversaire border border-dashed border-violet-400 flex justify-center items-center rounded-lg flex-1"></div>
+                    <div class="adversaire border border-dashed border-violet-400 flex justify-center items-center rounded-lg flex-1"></div>
                 </div>
-                <div class="joueur border-[#7B2CBF] gap-6 w-[95%] flex-1 flex justify-center">
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
-                    <div class="border border-dashed border-violet-400 h-[190px] rounded-lg flex-1"></div>
+                <div id="joueur" class=" border-[#7B2CBF] gap-6 w-[95%] flex-1 flex justify-center">
+                    <div ondragover="dragevent(event)" class="border border-dashed border-violet-400 flex justify-center rounded-lg flex-1"></div>
+                    <div ondragover="dragevent(event)" class="border border-dashed border-violet-400 flex justify-center rounded-lg flex-1"></div>
+                    <div ondragover="dragevent(event)" class="border border-dashed border-violet-400 flex justify-center rounded-lg flex-1"></div>
+                    <div ondragover="dragevent(event)" class="border border-dashed border-violet-400 flex justify-center rounded-lg flex-1"></div>
+                    <div ondragover="dragevent(event)" class="border border-dashed border-violet-400 flex justify-center rounded-lg flex-1"></div>
                 </div>
-                <div class="infoBar flex items-center justify-around px-2 w-[92%] h-[10%] border-2 rounded-[15px] border-[#7B2CBF] ">
-                    <h2 class="font-display font-bold text-white">Votre Main { 2 / 5 }</h2>
-                    <button class="bg-btn px-4 py-2 rounded-lg font-display font-bold">
+                <div
+                    class="infoBar flex items-center justify-around px-2 w-[92%] h-[10%] border-2 rounded-[15px] border-[#7B2CBF] ">
+                    <button class="bg-btn px-4 py-2 rounded-lg font-display font-bold endturn">
                         End Turn
                     </button>
                 </div>
-                <div class="main mb-2 gap-6 w-[100%] flex justify-center mb-[8px]">
-                    <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
-                    <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
-                    <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
-                    <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
-                    <div class="border border-dashed border-rouge-900 h-[190px] rounded-lg w-[150px]"></div>
+                <div id="main" class="gap-6 w-[95%] flex-1 flex justify-center items-center border-2 p-[20px] rounded-lg">
+
                 </div>
             </div>
         </section>
-        <section>
 
+        <section class=" choix absolute left-[47.9%] top-[60%] border-2 h-[100px] flex rounded-lg hidden">
+            <div class="bg-cards rounded-lg w-[300px] text-center flex flex-col justify-around">
+                <h2 class=" font-display font-bold ">
+                    Choose Mood 
+                </h2>
+                <div class="flex justify-center gap-4">
+                    <button class="attack font-display font-bold bg-btn rounded-lg hover:bg-violet-200 w-20 h-10">
+                        Attack
+                    </button>
+                    <button class="defense font-display font-bold bg-btn2 rounded-lg hover:bg-gris-200 w-20 h-10 ">
+                        Defense
+                    </button>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-[140px] bg-cards p-6 ">
@@ -181,5 +188,4 @@
     </footer>
     <script src="main.js"></script>
 </body>
-
 </html>
