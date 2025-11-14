@@ -485,6 +485,7 @@ if (window.location.pathname.includes("/PlayPage.html")) {
 
     const endturn = document.querySelector('.endturn');
     const adversaire = document.querySelectorAll('.adversaire');
+    const deckadverse = JSON.parse(localStorage.getItem("collection")) || [];
     let cpt = 0;
     endturn.addEventListener('click', () => {
             if (turn === "adverse") {
@@ -493,10 +494,10 @@ if (window.location.pathname.includes("/PlayPage.html")) {
             const temp = adversaire[cpt];
             temp.innerHTML = `
                 <div class="cardMain flex flex-col w-[150px] h-[150px] border-2 border-[#7B2CBF] rounded-[20px] ">
-                    <img src="${afficherMydeck[cpt].img}" alt="${afficherMydeck[cpt].name}" class="rounded-[20px] h-[100px]">
+                    <img src="${deckadverse[cpt].img}" alt="${deckadverse[cpt].name}" class="rounded-[20px] h-[100px]">
                     <div class="bg-cards rounded[20px] text-center ">
-                        <h3 class="text-[14px] font-tet font-bold mb-1">${afficherMydeck[cpt].name}</h3>
-                        <p class="font-tet font-bold" style="color: ${getRarityColor(afficherMydeck[cpt].rarity)};">${afficherMydeck[cpt].rarity}</p>
+                        <h3 class="text-[14px] font-tet font-bold mb-1">${deckadverse[cpt].name}</h3>
+                        <p class="font-tet font-bold" style="color: ${getRarityColor(deckadverse[cpt].rarity)};">${deckadverse[cpt].rarity}</p>
                     </div>
                 </div>
         `;
